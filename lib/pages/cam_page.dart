@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vision/flutter_vision.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'main_page.dart';
+
 class CamPage extends StatefulWidget {
   CamPageState createState() => CamPageState();
 }
@@ -126,6 +128,17 @@ class CamPageState extends State<CamPage> {
       setState(() {
         yoloResults = result;
       });
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+      await Future.delayed(Duration(seconds: 2));
+      Navigator.pop(context);
     }
   }
   List<Widget> displayBoxesAroundRecognizedObjects(Size screen) {
