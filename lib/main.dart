@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Handong Manna',
         theme: ThemeData(scaffoldBackgroundColor: ColorPalette.trueWhite),
-        initialRoute: '/splash',
+        initialRoute: '/bottom_navigator_page',
         onGenerateRoute: (settings){
           switch (settings.name){
             case '/splash':
@@ -69,10 +69,6 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context)=>LoadingPage());
           }
         },
-        // routes: {
-        //   // For Passing arguments
-        //   '/chat_profile': (BuildContext context) => ChatProfilePage()
-        // },
       ),
     );
   }

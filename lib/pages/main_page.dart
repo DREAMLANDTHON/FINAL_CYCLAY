@@ -148,78 +148,81 @@ class _MainPageState extends State<MainPage> {
             ),
           ],
         ),
-        GridView.builder(
-            shrinkWrap: true,
-            primary: false,
-            itemCount: 14,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (BuildContext context, int index) {
-              return Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(width * 0.02),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Image.asset(
-                        'assets/main_page/img_$index.png',
-                        // fit: BoxFit.cover,
+        Padding(
+          padding: EdgeInsets.all(width*0.03),
+          child: GridView.builder(
+              shrinkWrap: true,
+              primary: false,
+              itemCount: 14,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              itemBuilder: (BuildContext context, int index) {
+                return Stack(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(width * 0.02),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Image.asset(
+                          'assets/main_page/img_$index.png',
+                          // fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: height * 0.2,
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        icon: Icon(
-                          _isLiked[index]
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color: _isLiked[index] ? Colors.red : Colors.white,
-                          size: MediaQuery.of(context).size.width / 20,
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: height * 0.2,
                         ),
-                        onPressed: () {
-                          setState(() {
-                            _isLiked[index] = !_isLiked[index];
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(
                             _isLiked[index]
-                                ? _likeCount[index]++
-                                : _likeCount[index]--;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: width * 0.34,
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        icon: Icon(
-                          _isLiked2[index]
-                              ? Icons.bookmark
-                              : Icons.bookmark_border_outlined,
-                          color: _isLiked2[index] ? Colors.black : Colors.black,
-                          size: MediaQuery.of(context).size.width / 20,
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: _isLiked[index] ? Colors.red : Colors.white,
+                            size: MediaQuery.of(context).size.width / 20,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isLiked[index] = !_isLiked[index];
+                              _isLiked[index]
+                                  ? _likeCount[index]++
+                                  : _likeCount[index]--;
+                            });
+                          },
                         ),
-                        onPressed: () {
-                          setState(() {
-                            _isLiked2[index] = !_isLiked2[index];
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.34,
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(
                             _isLiked2[index]
-                                ? _likeCount2[index]++
-                                : _likeCount2[index]--;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              );
-            }),
+                                ? Icons.bookmark
+                                : Icons.bookmark_border_outlined,
+                            color: _isLiked2[index] ? Colors.black : Colors.black,
+                            size: MediaQuery.of(context).size.width / 20,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isLiked2[index] = !_isLiked2[index];
+                              _isLiked2[index]
+                                  ? _likeCount2[index]++
+                                  : _likeCount2[index]--;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              }),
+        ),
       ],
     );
   }

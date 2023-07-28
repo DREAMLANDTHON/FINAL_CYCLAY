@@ -59,29 +59,6 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
               width: width*0.1,
             ),
           ]),
-    // bottomNavigationBar: BottomNavigationBar(
-    // items: const <BottomNavigationBarItem>[
-    // BottomNavigationBarItem(
-    // icon: Icon(Icons.home),
-    // label: '홈',
-    // ),
-    // BottomNavigationBarItem(
-    // icon: Icon(Icons.camera_alt),
-    // label: '카메라',
-    // ),
-    // BottomNavigationBarItem(
-    // icon: Icon(Icons.person),
-    // label: '마이',
-    // ),
-    // ],
-    // currentIndex: _selectedIndex,
-    // selectedItemColor: Colors.black87,
-    // selectedLabelStyle: TextStyle(
-    // fontFamily: 'Arial', // 원하는 폰트 입력
-    // fontSize: 12,
-    // fontWeight: FontWeight.bold,
-    // ),
-
     bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         type: BottomNavigationBarType.fixed,
