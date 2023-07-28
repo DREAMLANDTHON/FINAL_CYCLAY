@@ -33,105 +33,23 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
+        // Image.asset('assets/my_page/profile.png'),
         Padding(
-            padding: EdgeInsets.fromLTRB(0.0, 30.0, 30.0, 10.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                InkWell(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height / 7,
-                      width: MediaQuery.of(context).size.width / 3,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: const DecorationImage(
-                          image: AssetImage('assets/my_page/cha.jpeg'),
-                          fit:BoxFit.cover,
-                        ),
-                      ),
-                    )
-                ),
-                SizedBox(width : MediaQuery.of(context).size.width / 12),
-                Container(
-                  height: MediaQuery.of(context).size.height / 7,
-                  width: MediaQuery.of(context).size.width / 3.2,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage('assets/my_page/refresh_score.png'),
-                    ),
-                  ),
-                )
-              ],
-
-            )
-        ),
-        Padding(
-          padding: EdgeInsets.only(bottom : MediaQuery.of(context).size.height / 30 ),
-          child : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start, // 왼쪽 정렬
-              children: [
-                Container(
-                  height: 30,
-                  width : 100,
-                  margin: EdgeInsets.only(left:30),
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage('assets/my_page/nangbi.png'),
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 30,
-                  width: 200,
-                  margin: EdgeInsets.only(left:25),
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage('assets/my_page/moamoa.png'),
-                    ),
-
-                  ),
-                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height / 5),
-                )
-              ]
-          ),
-        ),
-        Container(
-          height: MediaQuery.of(context).size.height / 10,
-          width : MediaQuery.of(context).size.width ,
-          color: Colors.grey.shade300,
-          child : Row(
-// mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left:MediaQuery.of(context).size.width / 10),
-                  height: MediaQuery.of(context).size.height / 7,
-                  width: MediaQuery.of(context).size.width / 5.2,
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(image: AssetImage('assets/my_page/gaesi.png'),
-                      )
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left:MediaQuery.of(context).size.width / 9),
-                  height: MediaQuery.of(context).size.height / 7,
-                  width: MediaQuery.of(context).size.width / 5.2,
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(image: AssetImage('assets/my_page/follow.png'),
-                      )
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left:MediaQuery.of(context).size.width / 9),
-                  height: MediaQuery.of(context).size.height / 7,
-                  width: MediaQuery.of(context).size.width / 5.2,
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(image: AssetImage('assets/my_page/follower.png'),
-                      )
-                  ),
-                )
-              ]
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          child: Container(
+            padding: EdgeInsets.zero,
+            height: MediaQuery.of(context).size.height / 2.4,
+            width: MediaQuery.of(context).size.width ,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ),
+              image: const DecorationImage(
+                image: AssetImage('assets/my_page/profile.png'),
+                fit:BoxFit.contain,
+              ),
+            ),
           ),
         ),
         GridView.builder(
