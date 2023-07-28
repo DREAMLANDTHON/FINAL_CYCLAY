@@ -48,6 +48,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _widgetOptions = <Widget>[
     MainPage(),
     MyPage(),
+    MyPage()
   ]; // 3개의 페이지를 연결할 예정이므로 3개의 페이지를 여기서 지정해준다. 탭 레이아웃은 3개.
 
   void _onItemTapped(int index) {
@@ -65,29 +66,7 @@ class _MainPageState extends State<MainPage> {
       isSelected.firstWhere((element) => element == true),
     );
 
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: gray,
-          elevation: 0.0,
-          title: Container(
-            child: Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(width*0.01, 0, 0, 0),
-                  child: Image.asset(
-                    'assets/main_page/CYCLAY.png',
-                    height: height * 0.2,
-                    width: width * 0.2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            Icon(Icons.notifications_none_outlined),
-            Icon(Icons.search)
-          ]),
-      body: MasonryGridView.count(
+    return MasonryGridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
@@ -174,26 +153,6 @@ class _MainPageState extends State<MainPage> {
             );
           }
         },
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '홈',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt_outlined),
-            label: '카메라',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: '마이페이지',
-          ),
-        ],
-        currentIndex: _selectedIndex, // 지정 인덱스로 이동
-        selectedItemColor: Colors.lightGreen,
-        onTap: _onItemTapped, // 선언했던 onItemTapped
-      ),
-    );
+      );
   }
 }

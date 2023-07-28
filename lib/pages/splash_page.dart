@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/color_constants.dart';
 import '../providers/auth_provider.dart';
+import 'buttom_navigator_page.dart';
 import 'login_page.dart';
 import 'main_page.dart';
 import 'start_page.dart';
@@ -30,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
     if (isLoggedIn) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MainPage()),
+        MaterialPageRoute(builder: (context) => BottomNavigatorPage()),
       );
       return;
     }

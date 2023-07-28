@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
+import 'pages/buttom_navigator_page.dart';
 import 'pages/category_register_page.dart';
 import 'pages/login_page.dart';
 import 'pages/main_page.dart';
@@ -66,6 +67,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context)=>LoginPage());
             case '/my_page':
               return MaterialPageRoute(builder: (context)=>MyPage());
+            case '/bottom_navigator_page':
+              return MaterialPageRoute(builder: (context)=>BottomNavigatorPage());
           }
         },
         // routes: {
