@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:loop_page_view/loop_page_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/color_constants.dart';
+import '../providers/search_provider.dart';
 import 'my_page.dart';
 
 final Set<Image> banner_images = {
