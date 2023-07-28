@@ -80,6 +80,7 @@ flutter:
     - assets/category_register_page/
     - assets/my_page/
     - assets/detail_image_page/
+    - assets/recommend_page/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

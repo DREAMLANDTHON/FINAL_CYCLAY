@@ -106,134 +106,150 @@ class _RecommandPageState extends State<RecommandPage> {
       isSelected.firstWhere((element) => element == true),
     );
 
-    return ListView(
-      children: [
-        Stack(
-          children: [
-            if (selectedIndexProvider.categoryList.isNotEmpty)
-              Column(
-                children: selectedIndexProvider.categoryList.map((category) {
-                  return Text(category);
-                }).toList(),
-            ),
-            Container(height: height * 0.3, color: ColorPalette.mainBasic),
-            Row(
-              children: [
-                SizedBox(
-                  width: width*0.5,
-                ),
-                SizedBox(
-                  height: height * 0.25,
-                  width: width * 0.4,
-                  child: PageView(
-                    controller: _pageController,
-                      children:  [
-                        Image.asset('assets/main_page/bag0.png'),
-                        Image.asset('assets/main_page/bag1.png'),
-                        Image.asset('assets/main_page/bag2.png'),
-                        Image.asset('assets/main_page/bag3.png'),
-                        Image.asset('assets/main_page/bag4.png'),
-                      ]
-                  )
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.all(width * 0.05),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset('assets/main_page/key_title.png'),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  Image.asset(
-                    'assets/main_page/sub_title.png',
-                    width: width * 0.45,
-                  ),
-                  SizedBox(height: height * 0.07),
-                ],
-              ),
-            ),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorPalette.mainBasic,
+        elevation: 0.0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: ColorPalette.mainBlack,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        Padding(
-          padding: EdgeInsets.all(width*0.03),
-          child: GridView.builder(
-              shrinkWrap: true,
-              primary: false,
-              itemCount: 14,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemBuilder: (BuildContext context, int index) {
-                return Stack(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(width * 0.02),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Image.asset(
-                          'assets/main_page/img_$index.png',
-                          // fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: height * 0.2,
-                        ),
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          icon: Icon(
-                            _isLiked[index]
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            color: _isLiked[index] ? Colors.red : Colors.white,
-                            size: MediaQuery.of(context).size.width / 20,
+        title: Image.asset('assets/main_page/logo.png',
+        width: width*0.3,),
+        centerTitle: true,
+      ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(width*0.05),
+            child: Stack(
+              children: [
+                if (selectedIndexProvider.categoryList.isNotEmpty)
+                  Column(
+                    children: [
+                      SizedBox(height: height*0.1),
+                      Row(
+                        children: [
+                          Row(
+                            children: selectedIndexProvider.categoryList.map((category) {
+                              return Padding(
+                                padding: EdgeInsets.all(width*0.01),
+                                child: OutlinedButton(
+                                  style: OutlinedButton.styleFrom(
+                                    backgroundColor: Colors.green, //<-- SEE HERE
+                                  ),
+                                    child: Text(category),
+                                onPressed: null,),
+                              );
+                            }).toList(),
                           ),
-                          onPressed: () {
-                            setState(() {
-                              _isLiked[index] = !_isLiked[index];
-                              _isLiked[index]
-                                  ? _likeCount[index]++
-                                  : _likeCount[index]--;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+                    ],
+                  ),
+                Image.asset('assets/recommend_page/title.png'),
+                Column(
+                  children: [
+                    SizedBox(height: height*0.08,),
+                    Image.asset('assets/recommend_page/title2.png')
+                  ],
+                ),
+                Column(
+                  children: [
+                    SizedBox(height: height*0.02,),
                     Row(
                       children: [
-                        SizedBox(
-                          width: width * 0.34,
-                        ),
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          icon: Icon(
-                            _isLiked2[index]
-                                ? Icons.bookmark
-                                : Icons.bookmark_border_outlined,
-                            color: _isLiked2[index] ? Colors.black : Colors.black,
-                            size: MediaQuery.of(context).size.width / 20,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _isLiked2[index] = !_isLiked2[index];
-                              _isLiked2[index]
-                                  ? _likeCount2[index]++
-                                  : _likeCount2[index]--;
-                            });
-                          },
-                        ),
+                        SizedBox(width: width*0.7,),
+                        Image.asset('assets/recommend_page/character.png')
                       ],
                     ),
                   ],
-                );
-              }),
-        ),
-      ],
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(width*0.03),
+            child: GridView.builder(
+                shrinkWrap: true,
+                primary: false,
+                itemCount: 14,
+                gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                itemBuilder: (BuildContext context, int index) {
+                  return Stack(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(width * 0.02),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Image.asset(
+                            'assets/main_page/img_$index.png',
+                            // fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: height * 0.2,
+                          ),
+                          IconButton(
+                            padding: EdgeInsets.zero,
+                            icon: Icon(
+                              _isLiked[index]
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: _isLiked[index] ? Colors.red : Colors.white,
+                              size: MediaQuery.of(context).size.width / 20,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isLiked[index] = !_isLiked[index];
+                                _isLiked[index]
+                                    ? _likeCount[index]++
+                                    : _likeCount[index]--;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: width * 0.34,
+                          ),
+                          IconButton(
+                            padding: EdgeInsets.zero,
+                            icon: Icon(
+                              _isLiked2[index]
+                                  ? Icons.bookmark
+                                  : Icons.bookmark_border_outlined,
+                              color: _isLiked2[index] ? Colors.black : Colors.black,
+                              size: MediaQuery.of(context).size.width / 20,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isLiked2[index] = !_isLiked2[index];
+                                _isLiked2[index]
+                                    ? _likeCount2[index]++
+                                    : _likeCount2[index]--;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                }),
+          ),
+        ],
+      ),
     );
   }
 }
