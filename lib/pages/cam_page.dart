@@ -155,6 +155,7 @@ class CamPageState extends State<CamPage> {
           builder: (context) => RecommandPage(),
         ),
       );
+
     }
   }
   List<Widget> displayBoxesAroundRecognizedObjects(Size screen) {

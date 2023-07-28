@@ -29,7 +29,10 @@ class _MyPageState extends State<MyPage> {
   ];
 
   void handleImageTap(int index) {
-    print('Image at index $index tapped.');
+    // print('Image at index $index tapped.');
+    if (index == 0){
+      Navigator.pushNamed(context, '/detail_image_page');
+    }
     // 원하는 작업을 추가하세요.
   }
 
