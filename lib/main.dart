@@ -14,6 +14,7 @@ import 'constants/color_constants.dart';
 import 'firebase_options.dart';
 import 'pages/buttom_navigator_page.dart';
 import 'pages/category_register_page.dart';
+import 'pages/content_page.dart';
 import 'pages/login_page.dart';
 import 'pages/main_page.dart';
 import 'pages/my_page.dart';
@@ -74,6 +75,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context)=>LoadingPage());
             case '/detail_image_page':
               return MaterialPageRoute(builder: (context)=>DetailImagePage());
+            case '/content_page':
+              return MaterialPageRoute(builder: (context)=>ContentPage());
           }
         },
       ),

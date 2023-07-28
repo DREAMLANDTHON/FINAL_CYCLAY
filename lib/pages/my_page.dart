@@ -32,6 +32,8 @@ class _MyPageState extends State<MyPage> {
     // print('Image at index $index tapped.');
     if (index == 0){
       Navigator.pushNamed(context, '/detail_image_page');
+    }else if (index == 6){
+      Navigator.pushNamed(context, '/content_page');
     }
     // 원하는 작업을 추가하세요.
   }

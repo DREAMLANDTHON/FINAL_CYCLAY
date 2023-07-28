@@ -6,6 +6,7 @@ import '../constants/color_constants.dart';
 import '../providers/auth_provider.dart';
 import 'cam_page.dart';
 import 'camera_page.dart';
+import 'login_page.dart';
 import 'main_page.dart';
 import 'my_page.dart';
 import 'start_page.dart';
@@ -26,16 +27,18 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(
           backgroundColor: ColorPalette.mainBasic,
           elevation: 0.0,
+          // titleSpacing: 0.0,
+          // centerTitle: false,
           title: Container(
             child: Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(width * 0.01, 0, 0, 0),
+                  padding: EdgeInsets.fromLTRB(width * 0.02, 0, 0, 0),
                   child: Image.asset(
                     'assets/main_page/logo.png',
                     height: height * 0.3,
@@ -60,7 +63,18 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
               size: width * 0.08,
             ),
             SizedBox(
-              width: width * 0.1,
+              width: width*0.01,
+            ),
+            IconButton(
+              icon: Icon(Icons.logout,
+              color: ColorPalette.mainBlack,),
+              onPressed: () {
+                authProvider.handleSignOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
             ),
           ]),
       bottomNavigationBar: BottomNavigationBar(
@@ -73,24 +87,28 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
         unselectedFontSize: 14,
         currentIndex: _selectedIndex,
         //현재 선택된 Index
-        onTap: (int index) {
-          // setState(() async {
-          //   _selectedIndex = index;
-          //   if (index == 2){
-          //     AuthProvider authProvider = context.read<AuthProvider>();
-          //     bool isLoggedIn = await authProvider.isLoggedIn();
-          //     SharedPreferences localStorage = await SharedPreferences.getInstance();
-          //     print(isLoggedIn);
-          //     if(!isLoggedIn){
-          //       Navigator.pushReplacement(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => StartPage()),
-          //       );
-          //     }
-          //   }
-          setState(() {
-            _selectedIndex = index;
-          });
+        onTap: (int index) async {
+          if (index == 2) {
+            AuthProvider authProvider = context.read<AuthProvider>();
+            bool isLoggedIn = await authProvider.isLoggedIn();
+
+            if (isLoggedIn) {
+              // User is logged in, navigate to MyPage
+              setState(() {
+                _selectedIndex = index;
+              });
+            } else {
+              // User is not logged in, navigate to LoginPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            }
+          } else {
+            setState(() {
+              _selectedIndex = index;
+            });
+          }
         },
         items: [
           BottomNavigationBarItem(

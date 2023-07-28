@@ -1,3 +1,4 @@
+import 'package:final_cyclay/pages/buttom_navigator_page.dart';
 import 'package:final_cyclay/pages/category_register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -133,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MainPage(),
+                              builder: (context) => BottomNavigatorPage(),
                             ),
                           );
                         }
