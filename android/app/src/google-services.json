@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1005162673751",
+    "project_id": "cyclay-2bed7",
+    "storage_bucket": "cyclay-2bed7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005162673751:android:c9ce2efa9cdeea322ed512",
+        "android_client_info": {
+          "package_name": "com.example.cyclay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005162673751-fbbkm5754jugojhlr6f8a1vtlagignu0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cyclay",
+            "certificate_hash": "2c0743980934bb639971e45c2f9f6da774924052"
+          }
+        },
+        {
+          "client_id": "1005162673751-qs1vjgh32imkbltbuddpofc5gmvfnjvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt4CgvsjFd-rAIDWWKsygnJmr7ntctbhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005162673751-7866h5hdgbvcspe0daccamqia6g3f72n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1005162673751-0m7ucdtlpi6lfh0cisn72urneb3de0rl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cyclay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005162673751:android:d340f89e14b75a2a2ed512",
+        "android_client_info": {
+          "package_name": "com.example.final_cyclay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005162673751-1rjlrnsek5u5ubuoc2aauibgh0tcp61b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.final_cyclay",
+            "certificate_hash": "c64c66c6502545cad517b287946af523a019ccfa"
+          }
+        },
+        {
+          "client_id": "1005162673751-qs1vjgh32imkbltbuddpofc5gmvfnjvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt4CgvsjFd-rAIDWWKsygnJmr7ntctbhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005162673751-7866h5hdgbvcspe0daccamqia6g3f72n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1005162673751-0m7ucdtlpi6lfh0cisn72urneb3de0rl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cyclay"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

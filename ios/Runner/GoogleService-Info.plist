@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1005162673751-mha5aqsldm7ottc33isc5ef52h8r9crr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1005162673751-mha5aqsldm7ottc33isc5ef52h8r9crr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1005162673751-fbbkm5754jugojhlr6f8a1vtlagignu0.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDhn-0526LznEmKepbIwUNa42LPGkNb8SE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1005162673751</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.finalCyclay</string>
+	<key>PROJECT_ID</key>
+	<string>cyclay-2bed7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cyclay-2bed7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1005162673751:ios:fc8f901f4643f0352ed512</string>
+</dict>
+</plist>
