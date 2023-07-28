@@ -58,6 +58,10 @@ class CamPageState extends State<CamPage> {
                 onPressed: pickImage,
                 child: const Text("Pick image"),
               ),
+              TextButton(
+                onPressed: pickImage2,
+                child: const Text("Camera"),
+              ),
               ElevatedButton(
                 onPressed: yoloOnImage,
                 child: const Text("Detect"),
@@ -87,6 +91,17 @@ class CamPageState extends State<CamPage> {
     final ImagePicker picker = ImagePicker();
     // Capture a photo
     final XFile? photo = await picker.pickImage(source: ImageSource.gallery);
+    if (photo != null) {
+      setState(() {
+        imageFile = File(photo.path);
+      });
+    }
+  }
+
+  Future<void> pickImage2() async {
+    final ImagePicker picker = ImagePicker();
+    // Capture a photo
+    final XFile? photo = await picker.pickImage(source: ImageSource.camera);
     if (photo != null) {
       setState(() {
         imageFile = File(photo.path);
