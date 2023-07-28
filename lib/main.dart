@@ -57,16 +57,12 @@ class MyApp extends StatelessWidget {
           switch (settings.name){
             case '/splash':
               return MaterialPageRoute(builder: (context)=>SplashPage());
-            case '/main':
-              return MaterialPageRoute(builder: (context)=>MainPage());
             case '/register':
               return MaterialPageRoute(builder: (context)=>CategoryRegisterPage());
             case '/start_page':
               return MaterialPageRoute(builder: (context)=>StartPage());
             case '/login_page':
               return MaterialPageRoute(builder: (context)=>LoginPage());
-            case '/my_page':
-              return MaterialPageRoute(builder: (context)=>MyPage());
             case '/bottom_navigator_page':
               return MaterialPageRoute(builder: (context)=>BottomNavigatorPage());
           }

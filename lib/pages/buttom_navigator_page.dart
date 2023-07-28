@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'camera_page.dart';
 import 'main_page.dart';
 import 'my_page.dart';
 
@@ -78,7 +79,7 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
 
   List _widgetOptions = [
     MainPage(),
-    MainPage(),
+    CameraPage(),
     MyPage()
   ];
 }
