@@ -1,19 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:loop_page_view/loop_page_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../constants/color_constants.dart';
 import 'my_page.dart';
 
 final Set<Image> banner_images = {
-  Image.asset('assets/main_page/image.png'),
-  Image.asset('assets/main_page/image.png'),
-  Image.asset('assets/main_page/image.png'),
-  Image.asset('assets/main_page/image.png'),
-};
-
-final Set<Image> feed_images = {
-  Image.asset(''),
+  Image.asset('assets/main_page/bag0.png',
+    width: 230,
+  height: 230,),
+  Image.asset('assets/main_page/bag1.png'),
+  Image.asset('assets/main_page/bag2.png'),
+  Image.asset('assets/main_page/bag3.png'),
+  Image.asset('assets/main_page/bag4.png'),
 };
 
 class MainPage extends StatefulWidget {
@@ -25,38 +27,72 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final List<bool> isSelected =
-  banner_images.map((e) => e == banner_images.last ? true : false).toList();
+      banner_images.map((e) => e == banner_images.last ? true : false).toList();
   LoopScrollMode selectedScrollMode = LoopScrollMode.shortest;
+
   final LoopPageController controller = LoopPageController(
+
       scrollMode: LoopScrollMode.shortest,
       activationMode: LoopActivationMode.immediate);
 
-  Color gray = Color(0xFFD9D9D9);
-
-  int _selectedIndex = 0; // 선택된 페이지의 인덱스 넘버 초기화
-
-  int currentPage = 0;
-
-  PageController _PageController = PageController(
+  int _currentPage = 0;
+  Timer ?_timer;
+  PageController _pageController = PageController(
     initialPage: 0,
   );
 
-  static const TextStyle optionStyle = TextStyle(
-      fontSize: 30,
-      fontWeight: FontWeight.bold); // 텍스트 스타일 지정이므로 해당 부분은 제거해도 된다.
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(Duration(seconds: 5), (Timer timer) {
+      if (_currentPage < 5) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
 
-  final List<Widget> _widgetOptions = <Widget>[
-    MainPage(),
-    MyPage(),
-    MyPage()
-  ]; // 3개의 페이지를 연결할 예정이므로 3개의 페이지를 여기서 지정해준다. 탭 레이아웃은 3개.
-
-  void _onItemTapped(int index) {
-    // 탭을 클릭했을떄 지정한 페이지로 이동
-    setState(() {
-      _selectedIndex = index;
+      _pageController.animateToPage(
+        _currentPage,
+        duration: Duration(milliseconds: 350),
+        curve: Curves.easeIn,
+      );
     });
   }
+
+  List<bool> _isLiked = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+  List<int> _likeCount = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  List<bool> _isLiked2 = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+  List<int> _likeCount2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   @override
   Widget build(BuildContext context) {
@@ -66,93 +102,125 @@ class _MainPageState extends State<MainPage> {
       isSelected.firstWhere((element) => element == true),
     );
 
-    return MasonryGridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 0,
-        mainAxisSpacing: 0,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return Stack(
+    return ListView(
+      children: [
+        Stack(
+          children: [
+            Container(height: height * 0.3, color: ColorPalette.mainBasic),
+            Row(
               children: [
-                Container(height: height * 0.3, color: gray),
-                Padding(
-                  padding: EdgeInsets.all(width * 0.05),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset('assets/main_page/key_title.png'),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      Image.asset(
-                        'assets/main_page/sub_title.png',
-                        width: width * 0.33,
-                      ),
-                      SizedBox(height: height * 0.07),
-                      Text('$_selectedIndex/5'),
-                      SizedBox(height: height*0.05,)
-
-                    ],
-                  ),
+                SizedBox(
+                  width: width*0.5,
+                ),
+                SizedBox(
+                  height: height * 0.25,
+                  width: width * 0.4,
+                  child: PageView(
+                    controller: _pageController,
+                      children:  [
+                        Image.asset('assets/main_page/bag0.png'),
+                        Image.asset('assets/main_page/bag1.png'),
+                        Image.asset('assets/main_page/bag2.png'),
+                        Image.asset('assets/main_page/bag3.png'),
+                        Image.asset('assets/main_page/bag4.png'),
+                      ]
+                  )
                 ),
               ],
-            );
-          } else if (index == 1) {
-            return Stack(children: [
-              Container(
-                height: height * 0.3,
-                color: gray,
-              ),
-              Column(
+            ),
+            Padding(
+              padding: EdgeInsets.all(width * 0.05),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Image.asset('assets/main_page/key_title.png'),
                   SizedBox(
-                    height: height * 0.1,
+                    height: height * 0.05,
                   ),
-                  SizedBox(
-                    height: height * 0.25,
-                    width: width * 0.4,
-                    child: LoopPageView.builder(
-                      controller: controller,
-                      itemCount: banner_images.length,
-                      itemBuilder: (_, index) {
-                        return banner_images.elementAt(index);
-                      },
+                  Image.asset(
+                    'assets/main_page/sub_title.png',
+                    width: width * 0.45,
+                  ),
+                  SizedBox(height: height * 0.07),
+                ],
+              ),
+            ),
+          ],
+        ),
+        GridView.builder(
+            shrinkWrap: true,
+            primary: false,
+            itemCount: 14,
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            itemBuilder: (BuildContext context, int index) {
+              return Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(width * 0.02),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Image.asset(
+                        'assets/main_page/img_$index.png',
+                        // fit: BoxFit.cover,
+                      ),
                     ),
                   ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: height * 0.2,
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: Icon(
+                          _isLiked[index]
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: _isLiked[index] ? Colors.red : Colors.white,
+                          size: MediaQuery.of(context).size.width / 20,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isLiked[index] = !_isLiked[index];
+                            _isLiked[index]
+                                ? _likeCount[index]++
+                                : _likeCount[index]--;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: width * 0.34,
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: Icon(
+                          _isLiked2[index]
+                              ? Icons.bookmark
+                              : Icons.bookmark_border_outlined,
+                          color: _isLiked2[index] ? Colors.black : Colors.black,
+                          size: MediaQuery.of(context).size.width / 20,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isLiked2[index] = !_isLiked2[index];
+                            _isLiked2[index]
+                                ? _likeCount2[index]++
+                                : _likeCount2[index]--;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ],
-              )
-            ]);
-          } else if (index % 3 == 0) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SizedBox(
-                  height: 20,
-                ),
-                ListTile(
-                  leading: Icon(Icons.album, size: 10),
-                  title: Text('Sonu Nigam'),
-                  subtitle: Text('Best of Sonu Nigam Song'),
-                ),
-              ],
-            );
-          } else {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SizedBox(
-                  height: 20,
-                ),
-                ListTile(
-                  leading: Icon(Icons.album, size: 10),
-                  title: Text('Sonu Nigam'),
-                  subtitle: Text('Best of Sonu Nigam Song'),
-                ),
-              ],
-            );
-          }
-        },
-      );
+              );
+            }),
+      ],
+    );
   }
 }

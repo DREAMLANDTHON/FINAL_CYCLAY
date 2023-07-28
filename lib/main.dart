@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'constants/color_constants.dart';
 import 'firebase_options.dart';
 import 'pages/buttom_navigator_page.dart';
 import 'pages/category_register_page.dart';
@@ -49,9 +50,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Handong Manna',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(scaffoldBackgroundColor: ColorPalette.trueWhite),
         initialRoute: '/splash',
         onGenerateRoute: (settings){
           switch (settings.name){
