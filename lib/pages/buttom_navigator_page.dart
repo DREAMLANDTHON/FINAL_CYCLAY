@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants/color_constants.dart';
+import 'cam_page.dart';
 import 'camera_page.dart';
 import 'main_page.dart';
 import 'my_page.dart';
@@ -117,5 +118,5 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
     );
   }
 
-  List _widgetOptions = [MainPage(), CameraPage(), MyPage()];
+  List _widgetOptions = [MainPage(), CamPage(), MyPage()];
 }
