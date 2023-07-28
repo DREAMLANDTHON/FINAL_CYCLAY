@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_cyclay/pages/loading_page.dart';
+import 'package:final_cyclay/providers/search_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
             firebaseFirestore: this.firebaseFirestore,
           ),
         ),
+        ChangeNotifierProvider(
+          create: (context) => SelectedIndexProvider(),
+        )
       ],
       child: MaterialApp(
         title: 'Handong Manna',

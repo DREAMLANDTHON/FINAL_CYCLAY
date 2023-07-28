@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:final_cyclay/pages/recommand_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vision/flutter_vision.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/search_provider.dart';
 import 'main_page.dart';
 
 class CamPage extends StatefulWidget {
@@ -110,6 +113,12 @@ class CamPageState extends State<CamPage> {
       });
     }
   }
+  void changeCategory(BuildContext context) {
+    final selectedIndexProvider =
+        Provider.of<SelectedIndexProvider>(context, listen: false);
+    // selectedIndexProvider.setIndex(0); // 0 is the index of MainPage in your _widgetOptions list
+    selectedIndexProvider.updateCategoryList(yoloResults!);
+  }
 
   yoloOnImage() async {
     yoloResults!.clear();
@@ -139,6 +148,13 @@ class CamPageState extends State<CamPage> {
       );
       await Future.delayed(Duration(seconds: 2));
       Navigator.pop(context);
+      changeCategory(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => RecommandPage(),
+        ),
+      );
     }
   }
   List<Widget> displayBoxesAroundRecognizedObjects(Size screen) {
