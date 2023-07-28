@@ -139,6 +139,7 @@ class CamPageState extends State<CamPage> {
       );
       await Future.delayed(Duration(seconds: 2));
       Navigator.pop(context);
+      // Navigator.pop(context);
     }
   }
   List<Widget> displayBoxesAroundRecognizedObjects(Size screen) {

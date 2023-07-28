@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_cyclay/pages/detail_image_page.dart';
 import 'package:final_cyclay/pages/loading_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -67,6 +68,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context)=>BottomNavigatorPage());
             case '/loading_page':
               return MaterialPageRoute(builder: (context)=>LoadingPage());
+            case '/detail_image_page':
+              return MaterialPageRoute(builder: (context)=>DetailImagePage());
           }
         },
       ),
