@@ -27,12 +27,15 @@ class _LoadingPageState extends State<LoadingPage> {
   }
   @override
   Widget build(BuildContext context){
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        SizedBox(
+          height: height*0.2,
+        ),
         AnimatedSwitcher(duration: Duration(milliseconds: 50),
           transitionBuilder: (Widget child, Animation<double> animation){
             return FadeTransition(child: child, opacity: animation);
@@ -45,17 +48,8 @@ class _LoadingPageState extends State<LoadingPage> {
           ),
           key:ValueKey<int>(_count),
         ),
-        SizedBox(height : MediaQuery.of(context).size.height / 12),
-        Container(
-          // margin: EdgeInsets.only(bottom:MediaQuery.of(context).size.height / 9),
-          height: MediaQuery.of(context).size.height / 7,
-          width: MediaQuery.of(context).size.width / 5.2,
-          decoration: BoxDecoration(
-            image: const DecorationImage(image: AssetImage('assets/my_page/wait.png'),
-            ),
-          ),
-        ),
-
+        SizedBox(height : MediaQuery.of(context).size.height*0.02),
+        Image.asset('assets/my_page/loading_message.png')
       ],
     );
   }

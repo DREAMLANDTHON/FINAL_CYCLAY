@@ -10,16 +10,6 @@ import '../constants/color_constants.dart';
 import '../providers/search_provider.dart';
 import 'my_page.dart';
 
-final Set<Image> banner_images = {
-  Image.asset('assets/main_page/bag0.png',
-    width: 230,
-  height: 230,),
-  Image.asset('assets/main_page/bag1.png'),
-  Image.asset('assets/main_page/bag2.png'),
-  Image.asset('assets/main_page/bag3.png'),
-  Image.asset('assets/main_page/bag4.png'),
-};
-
 class RecommandPage extends StatefulWidget {
   const RecommandPage({Key? key}) : super(key: key);
 
@@ -28,17 +18,14 @@ class RecommandPage extends StatefulWidget {
 }
 
 class _RecommandPageState extends State<RecommandPage> {
-  final List<bool> isSelected =
-      banner_images.map((e) => e == banner_images.last ? true : false).toList();
   LoopScrollMode selectedScrollMode = LoopScrollMode.shortest;
 
   final LoopPageController controller = LoopPageController(
-
       scrollMode: LoopScrollMode.shortest,
       activationMode: LoopActivationMode.immediate);
 
   int _currentPage = 0;
-  Timer ?_timer;
+  Timer? _timer;
   PageController _pageController = PageController(
     initialPage: 0,
   );
@@ -102,9 +89,6 @@ class _RecommandPageState extends State<RecommandPage> {
         Provider.of<SelectedIndexProvider>(context, listen: false);
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    final int selectedIndex = isSelected.indexOf(
-      isSelected.firstWhere((element) => element == true),
-    );
 
     return Scaffold(
       appBar: AppBar(
@@ -119,33 +103,42 @@ class _RecommandPageState extends State<RecommandPage> {
             Navigator.pop(context);
           },
         ),
-        title: Image.asset('assets/main_page/logo.png',
-        width: width*0.3,),
+        title: Image.asset(
+          'assets/main_page/logo.png',
+          width: width * 0.3,
+        ),
         centerTitle: true,
       ),
       body: ListView(
         children: [
           Padding(
-            padding: EdgeInsets.all(width*0.05),
+            padding: EdgeInsets.all(width * 0.05),
             child: Stack(
               children: [
                 if (selectedIndexProvider.categoryList.isNotEmpty)
                   Column(
                     children: [
-                      SizedBox(height: height*0.1),
+                      SizedBox(height: height * 0.1),
                       Row(
                         children: [
                           Row(
-                            children: selectedIndexProvider.categoryList.map((category) {
-                              return Padding(
-                                padding: EdgeInsets.all(width*0.01),
-                                child: OutlinedButton(
-                                  style: OutlinedButton.styleFrom(
-                                    backgroundColor: Colors.green, //<-- SEE HERE
-                                  ),
+                            children: selectedIndexProvider.categoryList
+                                .map((category) {
+                              if (category == "bottle" || category == "cup") {
+                                return Padding(
+                                  padding: EdgeInsets.all(width * 0.01),
+                                  child: OutlinedButton(
+                                    style: OutlinedButton.styleFrom(
+                                      backgroundColor:
+                                          Colors.green, //<-- SEE HERE
+                                    ),
                                     child: Text(category),
-                                onPressed: null,),
-                              );
+                                    onPressed: null,
+                                  ),
+                                );
+                              } else {
+                                return Text('');
+                              }
                             }).toList(),
                           ),
                         ],
@@ -155,16 +148,22 @@ class _RecommandPageState extends State<RecommandPage> {
                 Image.asset('assets/recommend_page/title.png'),
                 Column(
                   children: [
-                    SizedBox(height: height*0.08,),
+                    SizedBox(
+                      height: height * 0.08,
+                    ),
                     Image.asset('assets/recommend_page/title2.png')
                   ],
                 ),
                 Column(
                   children: [
-                    SizedBox(height: height*0.02,),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
                     Row(
                       children: [
-                        SizedBox(width: width*0.7,),
+                        SizedBox(
+                          width: width * 0.7,
+                        ),
                         Image.asset('assets/recommend_page/character.png')
                       ],
                     ),
@@ -174,13 +173,13 @@ class _RecommandPageState extends State<RecommandPage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(width*0.03),
+            padding: EdgeInsets.all(width * 0.03),
             child: GridView.builder(
                 shrinkWrap: true,
                 primary: false,
                 itemCount: 14,
-                gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
                 itemBuilder: (BuildContext context, int index) {
                   return Stack(
                     children: [
@@ -205,7 +204,8 @@ class _RecommandPageState extends State<RecommandPage> {
                               _isLiked[index]
                                   ? Icons.favorite
                                   : Icons.favorite_border,
-                              color: _isLiked[index] ? Colors.red : Colors.white,
+                              color:
+                                  _isLiked[index] ? Colors.red : Colors.white,
                               size: MediaQuery.of(context).size.width / 20,
                             ),
                             onPressed: () {
@@ -230,7 +230,9 @@ class _RecommandPageState extends State<RecommandPage> {
                               _isLiked2[index]
                                   ? Icons.bookmark
                                   : Icons.bookmark_border_outlined,
-                              color: _isLiked2[index] ? Colors.black : Colors.black,
+                              color: _isLiked2[index]
+                                  ? Colors.black
+                                  : Colors.black,
                               size: MediaQuery.of(context).size.width / 20,
                             ),
                             onPressed: () {

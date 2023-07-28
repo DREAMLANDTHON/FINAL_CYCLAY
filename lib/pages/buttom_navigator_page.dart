@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/color_constants.dart';
+import '../providers/auth_provider.dart';
 import 'cam_page.dart';
 import 'camera_page.dart';
 import 'main_page.dart';
 import 'my_page.dart';
+import 'start_page.dart';
 
 class BottomNavigatorPage extends StatefulWidget {
   const BottomNavigatorPage({Key? key}) : super(key: key);
@@ -45,21 +49,21 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
             Icon(
               Icons.notifications_none_outlined,
               color: ColorPalette.mainBlack,
-              size: width*0.08,
+              size: width * 0.08,
             ),
             SizedBox(
-              width: width*0.04,
+              width: width * 0.04,
             ),
             Icon(
               Icons.search,
               color: ColorPalette.mainBlack,
-              size: width*0.08,
+              size: width * 0.08,
             ),
             SizedBox(
-              width: width*0.1,
+              width: width * 0.1,
             ),
           ]),
-    bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         type: BottomNavigationBarType.fixed,
         backgroundColor: ColorPalette.trueWhite,
@@ -70,6 +74,20 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
         currentIndex: _selectedIndex,
         //현재 선택된 Index
         onTap: (int index) {
+          // setState(() async {
+          //   _selectedIndex = index;
+          //   if (index == 2){
+          //     AuthProvider authProvider = context.read<AuthProvider>();
+          //     bool isLoggedIn = await authProvider.isLoggedIn();
+          //     SharedPreferences localStorage = await SharedPreferences.getInstance();
+          //     print(isLoggedIn);
+          //     if(!isLoggedIn){
+          //       Navigator.pushReplacement(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => StartPage()),
+          //       );
+          //     }
+          //   }
           setState(() {
             _selectedIndex = index;
           });

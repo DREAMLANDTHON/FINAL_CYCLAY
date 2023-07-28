@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:final_cyclay/pages/loading_page.dart';
 import 'package:final_cyclay/pages/recommand_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vision/flutter_vision.dart';
@@ -142,7 +143,7 @@ class CamPageState extends State<CamPage> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: LoadingPage(),
           );
         },
       );
@@ -155,6 +156,12 @@ class CamPageState extends State<CamPage> {
           builder: (context) => RecommandPage(),
         ),
       );
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => LoadingPage(),
+      //   ),
+      // );
 
     }
   }
