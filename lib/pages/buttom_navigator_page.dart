@@ -22,6 +22,28 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
   int _selectedIndex = 0;
   List<bool> _selected = [true, false, false];
   Color gray = Color(0xFFF2FFF1);
+  
+  Future<bool?> showLoginConfirmationDialog() async {
+  return await showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Confirmation'),
+        content: Text('Are you sure you want to log out?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false), // No button
+            child: Text('No'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true), // Yes button
+            child: Text('Yes'),
+          ),
+        ],
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +108,7 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
         selectedFontSize: 14,
         unselectedFontSize: 14,
         currentIndex: _selectedIndex,
-        //í˜„ì¬ ì„ íƒëœ Index
+        //?˜„?¬ ?„ ?ƒ?œ Index
         onTap: (int index) async {
           if (index == 2) {
             AuthProvider authProvider = context.read<AuthProvider>();
@@ -98,11 +120,14 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
                 _selectedIndex = index;
               });
             } else {
-              // User is not logged in, navigate to LoginPage
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
+                bool? shouldContinue = await showLoginConfirmationDialog();
+                if (shouldContinue == true) {
+                  authProvider.handleSignOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                }
             }
           } else {
             setState(() {
@@ -113,15 +138,15 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
-            label: 'í™ˆ',
+            label: '?™ˆ',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera_alt),
-            label: 'ì¹´ë©”ë¼',
+            label: 'ì¹´ë©”?¼',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'ë§ˆì´í˜ì´ì§€',
+            label: 'ë§ˆì´?˜?´ì§?',
           ),
         ],
       ),
