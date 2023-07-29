@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../providers/auth_provider.dart';
+import 'category_page.dart';
 import 'main_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -128,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CategoryRegisterPage(),
+                              builder: (context) => CategoryPage(),
                             ),
                           );
                         }
@@ -136,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CategoryRegisterPage(),
+                              builder: (context) => CategoryPage(),
                             ),
                           );
                         }
