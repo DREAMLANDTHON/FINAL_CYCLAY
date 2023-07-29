@@ -1,3 +1,4 @@
+import 'package:final_cyclay/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +23,28 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
   int _selectedIndex = 0;
   List<bool> _selected = [true, false, false];
   Color gray = Color(0xFFF2FFF1);
+
+  Future<bool?> showLoginConfirmationDialog() async {
+    return await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('로그인'),
+          content: Text('로그인해서 더 많은 경험을 해보세요!'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false), // No button
+              child: Text('No'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true), // Yes button
+              child: Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,10 +122,14 @@ class _BottomNavigatorPageState extends State<BottomNavigatorPage> {
               });
             } else {
               // User is not logged in, navigate to LoginPage
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
+              bool? shouldContinue = await showLoginConfirmationDialog();
+              if (shouldContinue == true) {
+                authProvider.handleSignOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => OnBoardingPage()),
+                );
+              }
             }
           } else {
             setState(() {

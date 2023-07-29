@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_cyclay/pages/detail_image_page.dart';
 import 'package:final_cyclay/pages/loading_page.dart';
+import 'package:final_cyclay/pages/onboarding_page.dart';
 import 'package:final_cyclay/providers/search_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -77,6 +78,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context)=>DetailImagePage());
             case '/content_page':
               return MaterialPageRoute(builder: (context)=>ContentPage());
+            case '/onboarding_page':
+              return MaterialPageRoute(builder: (context)=>OnBoardingPage());
           }
         },
       ),
