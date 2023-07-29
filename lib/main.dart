@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_cyclay/pages/category_page.dart';
 import 'package:final_cyclay/pages/detail_image_page.dart';
 import 'package:final_cyclay/pages/loading_page.dart';
 import 'package:final_cyclay/pages/onboarding_page.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Handong Manna',
         theme: ThemeData(scaffoldBackgroundColor: ColorPalette.trueWhite),
-        initialRoute: '/bottom_navigator_page',
+        initialRoute: '/category_page',
         onGenerateRoute: (settings){
           switch (settings.name){
             case '/splash':
@@ -80,6 +81,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context)=>ContentPage());
             case '/onboarding_page':
               return MaterialPageRoute(builder: (context)=>OnBoardingPage());
+            case '/category_page':
+              return MaterialPageRoute(builder: (context)=>CategoryPage());
           }
         },
       ),
