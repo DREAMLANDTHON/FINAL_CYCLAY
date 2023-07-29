@@ -171,31 +171,50 @@ class _DetailImagePageState extends State<DetailImagePage> {
                 ),
                 Row(
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Image.asset(
-                            'assets/detail_image_page/chat.png',
-                            // Replace with your image asset
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 4,
-                          ),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              padding: EdgeInsets.zero,
+                              height: MediaQuery.of(context).size.height * 0.08,
+                              width: MediaQuery.of(context).size.width *0.49,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:
+                                  AssetImage('assets/detail_image_page/chat_img.png'),
+                                  // fit:BoxFit.fitWidth,
+                                  ),
+                                ),
+                              ),
+                              ),
+                        ],
+                        //   GestureDetector(
+                        //     onTap: () {},
+                        //     child: Image.asset(
+                        //       'assets/detail_image_page/chat_img.png',
+                        //       // Replace with your image asset
+                        //       width: MediaQuery.of(context).size.width * 0.49,
+                        //       height: MediaQuery.of(context).size.height * 0.08,
+                        //     ),
+                        //   ),
+                        // ],
+                      ),
                     ),
                     InkWell(
                       onTap: () {},
                       child: Container(
-                        padding: EdgeInsets.all(0),
-                        // padding: EdgeInsets.zero,
-                        height: MediaQuery.of(context).size.height / 4,
-                        width: MediaQuery.of(context).size.width,
+                        // padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.zero,
+                        height: MediaQuery.of(context).size.height * 0.08,
+                        width: MediaQuery.of(context).size.width *0.5,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image:
-                                AssetImage('assets/detail_image_page/buy.png'),
+                                AssetImage('assets/detail_image_page/buying_page.png'),
                             // fit:BoxFit.fitWidth,
                           ),
                         ),

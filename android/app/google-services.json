@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "1005162673751-igadh9asds8c8h3gg07mb59q0ton5a7o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cyclay",
+            "certificate_hash": "fefe5c94a3ec7e386f7a44f45973678581667162"
+          }
+        },
+        {
           "client_id": "1005162673751-qs1vjgh32imkbltbuddpofc5gmvfnjvd.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -58,11 +66,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1005162673751-1rjlrnsek5u5ubuoc2aauibgh0tcp61b.apps.googleusercontent.com",
+          "client_id": "1005162673751-2vav9fbkdrj5l24qu4l1glhgmud6v290.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.final_cyclay",
-            "certificate_hash": "c64c66c6502545cad517b287946af523a019ccfa"
+            "certificate_hash": "fefe5c94a3ec7e386f7a44f45973678581667162"
           }
         },
         {
