@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:final_cyclay/pages/loading_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
@@ -35,6 +36,8 @@ class _RecommandPageState extends State<RecommandPage> {
   late List<String> imageURLs;
 
   late List<String> _searchTerms;
+
+  bool _isLoading = true;
 
   Future<List<String>> fetchImageURLs() async {
     List<String> imageURLs = [];
@@ -76,6 +79,7 @@ class _RecommandPageState extends State<RecommandPage> {
     fetchImageURLs().then((List<String> urls) {
       setState(() {
         imageURLs = urls;
+        _isLoading = false;
       });
     });
   }
@@ -118,7 +122,7 @@ class _RecommandPageState extends State<RecommandPage> {
   @override
   Widget build(BuildContext context) {
     final selectedIndexProvider =
-        Provider.of<SelectedIndexProvider>(context, listen: false);
+    Provider.of<SelectedIndexProvider>(context, listen: false);
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
@@ -141,7 +145,8 @@ class _RecommandPageState extends State<RecommandPage> {
         ),
         centerTitle: true,
       ),
-      body: ListView(
+      body: _isLoading ? LoadingPage() :
+      ListView(
         children: [
           Padding(
             padding: EdgeInsets.all(width * 0.05),
@@ -162,9 +167,12 @@ class _RecommandPageState extends State<RecommandPage> {
                                   child: OutlinedButton(
                                     style: OutlinedButton.styleFrom(
                                       backgroundColor:
-                                          Colors.green, //<-- SEE HERE
+                                      ColorPalette.trueWhite,
                                     ),
-                                    child: Text(category),
+                                    child: Text(category,
+                                    style: TextStyle(
+                                      color: ColorPalette.mainBlack
+                                    ),),
                                     onPressed: null,
                                   ),
                                 );
@@ -222,95 +230,66 @@ class _RecommandPageState extends State<RecommandPage> {
                         child: Image.network(
                           imageURLs[index], // Use the fetched image URL here
                           fit: BoxFit.cover,
+                          width: 200,
+                          height: 200,
                         ),
                       ),
                     ),
-                    // ... (existing code for like and bookmark buttons)
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: height * 0.2,
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(
+                            _isLiked[index]
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: _isLiked[index] ? Colors.red : Colors.white,
+                            size: MediaQuery.of(context).size.width / 20,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isLiked[index] = !_isLiked[index];
+                              _isLiked[index]
+                                  ? _likeCount[index]++
+                                  : _likeCount[index]--;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.34,
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(
+                            _isLiked2[index]
+                                ? Icons.bookmark
+                                : Icons.bookmark_border_outlined,
+                            color: _isLiked2[index] ? Colors.black : Colors.black,
+                            size: MediaQuery.of(context).size.width / 20,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isLiked2[index] = !_isLiked2[index];
+                              _isLiked2[index]
+                                  ? _likeCount2[index]++
+                                  : _likeCount2[index]--;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ],
                 );
               },
             ),
           ),
-
-          // Padding(
-          //   padding: EdgeInsets.all(width * 0.03),
-          //   child: GridView.builder(
-          //       shrinkWrap: true,
-          //       primary: false,
-          //       itemCount: 14,
-          //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //           crossAxisCount: 2),
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return Stack(
-          //           children: [
-          //             Padding(
-          //               padding: EdgeInsets.all(width * 0.02),
-          //               child: GestureDetector(
-          //                 onTap: () {},
-          //                 child: Image.asset(
-          //                   'assets/main_page/img_$index.png',
-          //                   // fit: BoxFit.cover,
-          //                 ),
-          //               ),
-          //             ),
-          //             Column(
-          //               children: [
-          //                 SizedBox(
-          //                   height: height * 0.2,
-          //                 ),
-          //                 IconButton(
-          //                   padding: EdgeInsets.zero,
-          //                   icon: Icon(
-          //                     _isLiked[index]
-          //                         ? Icons.favorite
-          //                         : Icons.favorite_border,
-          //                     color:
-          //                         _isLiked[index] ? Colors.red : Colors.white,
-          //                     size: MediaQuery.of(context).size.width / 20,
-          //                   ),
-          //                   onPressed: () {
-          //                     setState(() {
-          //                       _isLiked[index] = !_isLiked[index];
-          //                       _isLiked[index]
-          //                           ? _likeCount[index]++
-          //                           : _likeCount[index]--;
-          //                     });
-          //                   },
-          //                 ),
-          //               ],
-          //             ),
-          //             Row(
-          //               children: [
-          //                 SizedBox(
-          //                   width: width * 0.34,
-          //                 ),
-          //                 IconButton(
-          //                   padding: EdgeInsets.zero,
-          //                   icon: Icon(
-          //                     _isLiked2[index]
-          //                         ? Icons.bookmark
-          //                         : Icons.bookmark_border_outlined,
-          //                     color: _isLiked2[index]
-          //                         ? Colors.black
-          //                         : Colors.black,
-          //                     size: MediaQuery.of(context).size.width / 20,
-          //                   ),
-          //                   onPressed: () {
-          //                     setState(() {
-          //                       _isLiked2[index] = !_isLiked2[index];
-          //                       _isLiked2[index]
-          //                           ? _likeCount2[index]++
-          //                           : _likeCount2[index]--;
-          //                     });
-          //                   },
-          //                 ),
-          //               ],
-          //             ),
-          //           ],
-          //         );
-          //       }),
-          // ),
-
         ],
       ),
     );

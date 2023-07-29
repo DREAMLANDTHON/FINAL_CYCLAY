@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthProvider>(
@@ -58,9 +57,10 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Handong Manna',
         theme: ThemeData(scaffoldBackgroundColor: ColorPalette.trueWhite),
-        initialRoute: '/category_page',
+        initialRoute: '/bottom_navigator_page',
         onGenerateRoute: (settings){
           switch (settings.name){
             case '/splash':
