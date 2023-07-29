@@ -42,6 +42,12 @@ class _ContentPageState extends State<ContentPage> {
               ),
             ),
             Positioned(
+              top: height * 0.5,
+              child: Image.asset('assets/my_page/shadow.png',
+                width: width , height: height * 0.61
+              ),
+            ),
+            Positioned(
               top: height * 0.07,
               left: width * 0.04,
               child: GestureDetector(
@@ -58,39 +64,58 @@ class _ContentPageState extends State<ContentPage> {
                   width: width * 0.3, height: height * 0.2),
             ),
             Positioned(
-              bottom: height * 0.14,
+              bottom: height * 0.115,
               left : width * 0.12,
               child: Image.asset('assets/my_page/info.png',
                   width: width * 0.8, height: height * 0.35),
             ),
             Positioned(
-              bottom: height * 0.00005,
-              left: width * 0.13,
+              top: height * 0.76,
+              left: width * 0.07,
               child: Image.asset('assets/my_page/chat.png',
-                  width: width * 0.3, height: height * 0.2),
+                  width: width * 0.4, height: height * 0.3),
             ),
             Positioned(
-              bottom: height * 0.00005,
-              right: width * 0.1,
+              top: height * 0.735,
+              left: width * 0.35,
               child: Image.asset('assets/my_page/buying.png',
-                  width: width * 0.3, height: height * 0.2),
+                  width: width * 0.8, height: height * 0.35),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                onPressed: (){
+                  setState(() {
+                    _controller!.value.isPlaying
+                        ? _controller!.pause()
+                        : _controller!.play();
+                  });
+                },
+                child: Icon(
+                  _controller!.value.isPlaying ? Icons.pause : Icons.play_arrow,
+
+                ),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                highlightElevation: 0,
+              ),
             ),
           ],
         )
             : CircularProgressIndicator(),
       ),
-      floatingActionButton:
-      FloatingActionButton(onPressed: () {
-        setState(() {
-          _controller!.value.isPlaying
-              ? _controller!.pause()
-              : _controller!.play();
-        });
-      },
-        child: Icon(_controller!.value.isPlaying ? Icons.pause : Icons.play_arrow),
-        backgroundColor: Colors.transparent, // 투명한 배경색 설정
-        elevation: 0, // 그림자 높이 제거
-        highlightElevation: 0, ),
+      // floatingActionButton:
+      // FloatingActionButton(onPressed: () {
+      //   setState(() {
+      //     _controller!.value.isPlaying
+      //         ? _controller!.pause()
+      //         : _controller!.play();
+      //   });
+      // },
+      //   child: Icon(_controller!.value.isPlaying ? Icons.pause : Icons.play_arrow),
+      //   backgroundColor: Colors.transparent, // 투명한 배경색 설정
+      //   elevation: 0, // 그림자 높이 제거
+      //   highlightElevation: 0, ),
     );
   }
 
