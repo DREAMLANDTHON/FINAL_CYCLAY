@@ -11,9 +11,10 @@ class LoadingPage extends StatefulWidget{
 class _LoadingPageState extends State<LoadingPage> {
   int _count = 0;
 
-  var imgList = ['assets/my_page/character_r.png', 'assets/my_page/character_b.png',
-    'assets/my_page/character_y.png', 'assets/my_page/character_g.png'];
-
+  // var imgList = ['assets/my_page/character_r.png', 'assets/my_page/character_b.png',
+  //   'assets/my_page/character_y.png', 'assets/my_page/character_g.png'];
+  var imgList = ['assets/my_page/char_r.png', 'assets/my_page/char_b.png',
+    'assets/my_page/char_y.png', 'assets/my_page/char_g.png'];
   Timer? timer;
   double? width;
   double? height;
